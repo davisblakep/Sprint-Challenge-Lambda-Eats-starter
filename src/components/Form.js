@@ -11,9 +11,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 const formSchema = yup.object().shape({
     name: yup.string().required("Name is a required field"),
     email: yup.string().email("Must be a valid email address").required("Must include email address"),
-    password: yup.string().required("Must include a password"),
     sauce: yup.string().required("Please select your sauce"),
-    role: yup.string().required("Please select your role"),
+    size: yup.string().required("Please select your pizza size"),
     terms: yup.bool().oneOf([true], "Please agree to the terms and conditions")
 });
 
@@ -36,7 +35,7 @@ const Form = (props) => {
         email: "",
         password: "",
         sauce: "",
-        role: "",
+        size: "",
         terms: false,
     });
 
@@ -45,7 +44,7 @@ const Form = (props) => {
         email: "",
         password: "",
         sauce: "",
-        role: "",
+        size: "",
         terms: "",
     })
 
@@ -101,13 +100,14 @@ const Form = (props) => {
     return(
        
         <div className="form-container">
-             <Card className={classes.root} variant="outlined" style={{backgroundColor: "white"}}>
+             <Card className={classes.root}>
              <CardMedia
           className={classes.media}
           image="https://images.pexels.com/photos/1566837/pexels-photo-1566837.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
           title="Order Pizza"
         />
       <CardContent>
+          <h3 style={{textAlign: "center"}}>Build Your Own Pizza</h3>
             <form onSubmit={submitMember} style={{marginTop: "5%"}}>
                 <br />
                 <label htmlFor="name">
@@ -116,7 +116,7 @@ const Form = (props) => {
                     type="text"
                     name="name"
                     id="name"
-                    placeholder="Enter First and Last Name"
+                    placeholder="Enter First Name"
                     value={formState.name}
                     onChange={inputChange}
                     required
@@ -136,19 +136,26 @@ const Form = (props) => {
                     />
                 </label>
                 <p style={{color: 'red', fontSize: '10px'}}>{errorState.email}</p>
-                <label htmlFor="password">
-                    Password:
-                    <input 
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Please Create a Strong Password"
-                    value={formState.password}
-                    onChange={inputChange}
-                    required
-                    />
+               
+                <label htmlFor="size">
+                Size: 
+                <select
+                value={formState.size}
+                name="size"
+                id="size"
+                onChange={inputChange}
+                required
+                >
+                <option value="">--Select Size--</option>
+                <option value="Small">Small</option>
+                <option value="Medium">Medium</option>
+                <option value="Large">Large</option>
+                <option value="XLarge">XLarge</option>
+                </select>
                 </label>
-                <p style={{color: 'red', fontSize: '10px'}}>{errorState.password}</p>
+                <p style={{color: 'red', fontSize: '10px'}}>{errorState.size}</p>
+               
+               
                 <label htmlFor="sauce">
                 Sauce:
                 <select
@@ -166,24 +173,8 @@ const Form = (props) => {
                 </select>
                 </label>
                 <p style={{color: 'red', fontSize: '10px'}}>{errorState.sauce}</p>
-                <label htmlFor="role">
-                Role: 
-                <select
-                value={formState.role}
-                name="role"
-                id="role"
-                onChange={inputChange}
-                required
-                >
-                <option value="">--Select Role--</option>
-                <option value="Driver">Driver</option>
-                <option value="Crew">Crew</option>
-                <option value="Sponsor">Sponsor</option>
-                <option value="Media">Media</option>
-                </select>
-                </label>
-                <p style={{color: 'red', fontSize: '10px'}}>{errorState.role}</p>
                 <br />
+                <h4>Add Toppings</h4>
                 <label htmlFor="terms">
                     <input 
                     type="checkbox"
@@ -194,7 +185,6 @@ const Form = (props) => {
                     value={!formState.terms}
                     required
                     />
-                    I agree to the Terms and Conditions.
                 </label>
                 <p style={{color: 'red', fontSize: '10px'}}>{errorState.terms}</p>
                 <button>Place Order</button>
