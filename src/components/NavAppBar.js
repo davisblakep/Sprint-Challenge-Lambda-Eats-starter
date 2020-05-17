@@ -33,10 +33,10 @@ export default function NavAppBar() {
             </Link>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-          Monster Jam XXV Members
+          Lambda Eats
           </Typography>
-          <Link style={{textDecoration: "none", color: "white"}} to="/signup">
-          <Button color="inherit">Sign Up</Button>
+          <Link style={{textDecoration: "none", color: "white"}} to="/pizza">
+          <Button color="inherit">Order Now!</Button>
           </Link>
         </Toolbar>
       </AppBar>

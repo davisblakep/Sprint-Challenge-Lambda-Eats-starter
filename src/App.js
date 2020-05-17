@@ -50,7 +50,7 @@ function App() {
       <Route exact path="/">
       <HomePage />
       </Route>
-      <Route path="/signup">
+      <Route path="/pizza">
       <Form addMember={addMember} />
       </Route>
       <Route path="/members">

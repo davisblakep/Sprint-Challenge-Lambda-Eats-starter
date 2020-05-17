@@ -26,22 +26,17 @@ export default function HomePageCard() {
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Monster Jam XXV
+            Lambda Eats
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Welcome to Monster Jam XXV!  We have an exciting line-up this year and we look forward to another amazing show.  Click to sign-up, or view the current sign-up sheet.  Good luck!
+            Your favorite food, delivered while coding
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-          <Link to="/signup" style={{textDecoration: "none"}}>
+          <Link to="/pizza" style={{textDecoration: "none"}}>
         <Button size="small" color="primary">
-          Sign Up
-        </Button>
-        </Link>
-        <Link to="members" style={{textDecoration: "none"}}>
-        <Button size="small" color="primary">
-          Members
+          Pizza?
         </Button>
         </Link>
       </CardActions>
