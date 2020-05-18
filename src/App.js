@@ -3,45 +3,22 @@ import {Route} from 'react-router-dom';
 import './App.css';
 
 import Form from './components/Form'
-import UserTable from './components/UserTable'
+import OrderPage from './components/OrderPage'
 import NavAppBar from './components/NavAppBar'
 import HomePage from './components/HomePage'
 
 function App() {
 
-  const [memberList, setMemberList] = useState([{
-    id: 1,
-    name: "Frank Mir",
-    team: "Gravedigger",
-    role: "Driver",
-    email: "frank@gravedigger.com"
-  },
-  {
-    id: 2,
-    name: "John Beluci",
-    team: "Avenger",
-    role: "Crew",
-    email: "johnb@avengerracing.com"
+  const [pizzaOrder, setPizzaOrder] = useState([])
 
-  },
-  {
-    id: 3,
-    name: "Joe Saginaw",
-    team: "Megalodon",
-    role: "Media",
-    email: "saggyjoe@truckmagazine.com"
-
-  }])
-
-  const addMember = person => {
-    const newMember = {
-      id: memberList.length + 1,
-      name: person.name,
-      team: person.team,
-      role: person.role,
-      email: person.email,
+  const addOrder = pizza => {
+    const newOrder = {
+      name: pizza.name,
+      email: pizza.email,
+      size: pizza.size,
+      sauce: pizza.sauce,
     };
-    setMemberList([...memberList, newMember])
+    setPizzaOrder([...pizzaOrder, newOrder])
   }
 
   return (
@@ -51,10 +28,10 @@ function App() {
       <HomePage />
       </Route>
       <Route path="/pizza">
-      <Form addMember={addMember} />
+      <Form addOrder={addOrder} />
       </Route>
-      <Route path="/members">
-      <UserTable memberList={memberList} />
+      <Route path="/order">
+      <OrderPage pizzaOrder={pizzaOrder} />
       </Route>
     </div>
   );

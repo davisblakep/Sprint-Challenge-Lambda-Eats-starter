@@ -54,24 +54,9 @@ form button {
   height: 6%;
 }
 
-.table-container{
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  justify-content: center;
-  align-items: center;
-  padding-left: 10%;
-  padding-right: 10%;
-  background-image: url('https://www.monsterenergy.com/media/uploads_image/2019/03/27/1600/800/e329068c2bd5f2c3628dc24b20b05df9.jpg?mod=v1_e97c3aa6f0fc0059c1a42f7a1316f0fd');
+.order-container{
+  background-image: url('https://images.pexels.com/photos/905847/pexels-photo-905847.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
   background-size: cover;
   background-repeat: no-repeat;
   height: 92vh;
-}
-
-.table-container h3 {
-  margin-top: -5%;
-  margin-bottom: 10%;
-  color: black;
-  background-color: white;
-  padding: 1%;
 }

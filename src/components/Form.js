@@ -34,6 +34,8 @@ const useStyles = makeStyles({
 
 const Form = (props) => {
 
+    console.log("Form props", props)
+
     const classes = useStyles();
 
     const [formState, setFormState] = useState({
@@ -62,13 +64,8 @@ const Form = (props) => {
         // pepporoni: false,
     })
 
-   
-
-    console.log("errorState", errorState)
 
     const inputChange = (e) => {
-        console.log("input change", formState)
-        console.log("event target", e.target)
         e.persist();
         validate(e);
         let value = e.target.name === "pepperoni" || e.target.name === "sausage" || e.target.name === "bacon" || e.target.name === "onions" || e.target.name === "peppers" || e.target.name === "mushrooms" ? e.target.checked: e.target.value;
@@ -94,7 +91,7 @@ const Form = (props) => {
     let history = useHistory();
 
     const SubmitButton = () =>{
-           return history.push("/members");   
+           return history.push("/order");   
     }
 
     
@@ -105,7 +102,7 @@ const Form = (props) => {
         setFormState({name: "", email:"", password: "", sauce: "", role: "", pepperoni: false, sausage: false, bacon: false, onions: false, peppers: false, mushrooms: false, special: "",})
         axios
         .post("https://reqres.in/api/users", formState)
-        .then(response => {console.log(response); props.addMember(response.data)})
+        .then(response => {console.log("Axios call for order submit", response); props.addOrder(response.data)})
         .catch(err => console.log(err));
         SubmitButton()
     }
@@ -198,7 +195,6 @@ const Form = (props) => {
                     checked={formState.pepperoni}
                     onChange={inputChange}
                     value={!formState.pepperoni}
-                    required
                     style={{width: "auto"}}
                     />
                     Pepperoni
@@ -213,7 +209,6 @@ const Form = (props) => {
                     checked={formState.sausage}
                     onChange={inputChange}
                     value={!formState.sausage}
-                    required
                     style={{width: "auto"}}
                     />
                     Sausage
@@ -228,7 +223,6 @@ const Form = (props) => {
                     checked={formState.bacon}
                     onChange={inputChange}
                     value={!formState.bacon}
-                    required
                     style={{width: "auto"}}
                     />
                     Bacon
@@ -243,7 +237,6 @@ const Form = (props) => {
                     checked={formState.onions}
                     onChange={inputChange}
                     value={!formState.onions}
-                    required
                     style={{width: "auto"}}
                     />
                     Onions
@@ -258,7 +251,6 @@ const Form = (props) => {
                     checked={formState.peppers}
                     onChange={inputChange}
                     value={!formState.peppers}
-                    required
                     style={{width: "auto"}}
                     />
                     Peppers
@@ -273,7 +265,6 @@ const Form = (props) => {
                     checked={formState.mushrooms}
                     onChange={inputChange}
                     value={!formState.mushrooms}
-                    required
                     style={{width: "auto"}}
                     />
                     Mushrooms
@@ -290,7 +281,6 @@ const Form = (props) => {
                     placeholder="Anything you would like to add?"
                     value={formState.special}
                     onChange={inputChange}
-                    required
                     style={{width: "100%"}}
                     />
                 </label>
