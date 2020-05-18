@@ -19,6 +19,7 @@ const formSchema = yup.object().shape({
     onions: yup.bool().oneOf([true], "Please agree to the terms and conditions"),
     peppers: yup.bool().oneOf([true], "Please agree to the terms and conditions"),
     mushrooms: yup.bool().oneOf([true], "Please agree to the terms and conditions"),
+    special: yup.string(),
 });
 
 const useStyles = makeStyles({
@@ -46,6 +47,7 @@ const Form = (props) => {
         onions: false,
         peppers: false,
         mushrooms: false,
+        special: "",
         
     });
 
@@ -100,7 +102,7 @@ const Form = (props) => {
     const submitMember = (e) => {
         e.preventDefault();
         // props.addMember(formState);
-        setFormState({name: "", email:"", password: "", sauce: "", role: "", pepperoni: false, sausage: false, bacon: false, onions: false, peppers: false, mushrooms: false,})
+        setFormState({name: "", email:"", password: "", sauce: "", role: "", pepperoni: false, sausage: false, bacon: false, onions: false, peppers: false, mushrooms: false, special: "",})
         axios
         .post("https://reqres.in/api/users", formState)
         .then(response => {console.log(response); props.addMember(response.data)})
@@ -189,7 +191,6 @@ const Form = (props) => {
                 <h4>Add Toppings</h4>
                 <div className="checkbox-container">
                 <label htmlFor="pepperoni">
-                    Pepperoni
                     <input 
                     type="checkbox"
                     name="pepperoni"
@@ -198,12 +199,13 @@ const Form = (props) => {
                     onChange={inputChange}
                     value={!formState.pepperoni}
                     required
+                    style={{width: "auto"}}
                     />
-                </label>
+                    Pepperoni
+                    </label>
                 </div>
                 <div className="checkbox-container">
                 <label htmlFor="sausage">
-                    Sausage
                     <input 
                     type="checkbox"
                     name="sausage"
@@ -212,12 +214,13 @@ const Form = (props) => {
                     onChange={inputChange}
                     value={!formState.sausage}
                     required
+                    style={{width: "auto"}}
                     />
+                    Sausage
                 </label>
                 </div>
                 <div className="checkbox-container">
                 <label htmlFor="bacon">
-                    Bacon
                     <input 
                     type="checkbox"
                     name="bacon"
@@ -226,12 +229,13 @@ const Form = (props) => {
                     onChange={inputChange}
                     value={!formState.bacon}
                     required
+                    style={{width: "auto"}}
                     />
+                    Bacon
                 </label>
                 </div>
                 <div className="checkbox-container">
                 <label htmlFor="onions">
-                    Onions
                     <input 
                     type="checkbox"
                     name="onions"
@@ -240,12 +244,13 @@ const Form = (props) => {
                     onChange={inputChange}
                     value={!formState.onions}
                     required
+                    style={{width: "auto"}}
                     />
+                    Onions
                 </label>
                 </div>
                 <div className="checkbox-container">
                 <label htmlFor="peppers">
-                    Peppers
                     <input 
                     type="checkbox"
                     name="peppers"
@@ -254,12 +259,13 @@ const Form = (props) => {
                     onChange={inputChange}
                     value={!formState.peppers}
                     required
+                    style={{width: "auto"}}
                     />
+                    Peppers
                 </label>
                 </div>
                 <div className="checkbox-container">
                 <label htmlFor="mushrooms">
-                    Mushrooms
                     <input 
                     type="checkbox"
                     name="mushrooms"
@@ -268,9 +274,28 @@ const Form = (props) => {
                     onChange={inputChange}
                     value={!formState.mushrooms}
                     required
+                    style={{width: "auto"}}
                     />
+                    Mushrooms
                 </label>
                 </div>
+                <br />
+                <br />
+                <label htmlFor="special">
+                    Special Instructions:
+                    <textarea 
+                    type="textarea"
+                    name="special"
+                    id="special"
+                    placeholder="Anything you would like to add?"
+                    value={formState.special}
+                    onChange={inputChange}
+                    required
+                    style={{width: "100%"}}
+                    />
+                </label>
+                <br />
+                <br />
                 <button>Place Order</button>
                 
             </form>
