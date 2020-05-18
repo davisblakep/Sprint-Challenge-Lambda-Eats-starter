@@ -13,7 +13,12 @@ const formSchema = yup.object().shape({
     email: yup.string().email("Must be a valid email address").required("Must include email address"),
     sauce: yup.string().required("Please select your sauce"),
     size: yup.string().required("Please select your pizza size"),
-    terms: yup.bool().oneOf([true], "Please agree to the terms and conditions")
+    pepperoni: yup.bool().oneOf([true], "Please agree to the terms and conditions"),
+    sausage: yup.bool().oneOf([true], "Please agree to the terms and conditions"),
+    bacon: yup.bool().oneOf([true], "Please agree to the terms and conditions"),
+    onions: yup.bool().oneOf([true], "Please agree to the terms and conditions"),
+    peppers: yup.bool().oneOf([true], "Please agree to the terms and conditions"),
+    mushrooms: yup.bool().oneOf([true], "Please agree to the terms and conditions"),
 });
 
 const useStyles = makeStyles({
@@ -33,11 +38,18 @@ const Form = (props) => {
     const [formState, setFormState] = useState({
         name: "",
         email: "",
-        password: "",
         sauce: "",
         size: "",
-        terms: false,
+        pepperoni: false,
+        sausage: false,
+        bacon: false,
+        onions: false,
+        peppers: false,
+        mushrooms: false,
+        
     });
+
+    console.log("FormState", formState)
 
     const [errorState, setErrorState] = useState({
         name: "",
@@ -45,7 +57,7 @@ const Form = (props) => {
         password: "",
         sauce: "",
         size: "",
-        terms: "",
+        // pepporoni: false,
     })
 
    
@@ -57,7 +69,7 @@ const Form = (props) => {
         console.log("event target", e.target)
         e.persist();
         validate(e);
-        let value = e.target.name === "terms" ? e.target.checked: e.target.value;
+        let value = e.target.name === "pepperoni" || e.target.name === "sausage" || e.target.name === "bacon" || e.target.name === "onions" || e.target.name === "peppers" || e.target.name === "mushrooms" ? e.target.checked: e.target.value;
         setFormState({...formState, [e.target.name]: value})
         console.log("value", value)
     }
@@ -88,7 +100,7 @@ const Form = (props) => {
     const submitMember = (e) => {
         e.preventDefault();
         // props.addMember(formState);
-        setFormState({name: "", email:"", password: "", sauce: "", role: "", terms: false})
+        setFormState({name: "", email:"", password: "", sauce: "", role: "", pepperoni: false, sausage: false, bacon: false, onions: false, peppers: false, mushrooms: false,})
         axios
         .post("https://reqres.in/api/users", formState)
         .then(response => {console.log(response); props.addMember(response.data)})
@@ -175,18 +187,90 @@ const Form = (props) => {
                 <p style={{color: 'red', fontSize: '10px'}}>{errorState.sauce}</p>
                 <br />
                 <h4>Add Toppings</h4>
-                <label htmlFor="terms">
+                <div className="checkbox-container">
+                <label htmlFor="pepperoni">
+                    Pepperoni
                     <input 
                     type="checkbox"
-                    name="terms"
-                    id="terms"
-                    checked={formState.terms}
+                    name="pepperoni"
+                    id="pepperoni"
+                    checked={formState.pepperoni}
                     onChange={inputChange}
-                    value={!formState.terms}
+                    value={!formState.pepperoni}
                     required
                     />
                 </label>
-                <p style={{color: 'red', fontSize: '10px'}}>{errorState.terms}</p>
+                </div>
+                <div className="checkbox-container">
+                <label htmlFor="sausage">
+                    Sausage
+                    <input 
+                    type="checkbox"
+                    name="sausage"
+                    id="sausage"
+                    checked={formState.sausage}
+                    onChange={inputChange}
+                    value={!formState.sausage}
+                    required
+                    />
+                </label>
+                </div>
+                <div className="checkbox-container">
+                <label htmlFor="bacon">
+                    Bacon
+                    <input 
+                    type="checkbox"
+                    name="bacon"
+                    id="bacon"
+                    checked={formState.bacon}
+                    onChange={inputChange}
+                    value={!formState.bacon}
+                    required
+                    />
+                </label>
+                </div>
+                <div className="checkbox-container">
+                <label htmlFor="onions">
+                    Onions
+                    <input 
+                    type="checkbox"
+                    name="onions"
+                    id="onions"
+                    checked={formState.onions}
+                    onChange={inputChange}
+                    value={!formState.onions}
+                    required
+                    />
+                </label>
+                </div>
+                <div className="checkbox-container">
+                <label htmlFor="peppers">
+                    Peppers
+                    <input 
+                    type="checkbox"
+                    name="peppers"
+                    id="peppers"
+                    checked={formState.peppers}
+                    onChange={inputChange}
+                    value={!formState.peppers}
+                    required
+                    />
+                </label>
+                </div>
+                <div className="checkbox-container">
+                <label htmlFor="mushrooms">
+                    Mushrooms
+                    <input 
+                    type="checkbox"
+                    name="mushrooms"
+                    id="mushrooms"
+                    checked={formState.mushrooms}
+                    onChange={inputChange}
+                    value={!formState.mushrooms}
+                    required
+                    />
+                </label>
+                </div>
                 <button>Place Order</button>
                 
             </form>
