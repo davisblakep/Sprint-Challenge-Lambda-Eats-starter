@@ -37,10 +37,10 @@ export default function OrderPage(props) {
     <Card className={classes.root} variant="outlined">
       <CardContent>
         <Typography variant="h5" component="h2">
-          Thank you!
+          Congrats!
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          Your order is on its way.
+          Pizza is on its way.
         </Typography>
       </CardContent>
       <CardActions>
